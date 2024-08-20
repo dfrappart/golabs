@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
       goclient.vm.box = IMAGEGO
       goclient.vm.hostname = "goclient#{i}"
       goclient.vm.network  :private_network, ip: "192.168.56.#{i+50}"
+      goclient.vm.provision "file", source: "./package/go1.23.0.linux-amd64.tar.gz", destination: "/tmp/go1.23.0.linux-amd64.tar.gz"
       goclient.vm.provision "shell", privileged: true,  path: "scripts/go_install.sh"
     end
   end
